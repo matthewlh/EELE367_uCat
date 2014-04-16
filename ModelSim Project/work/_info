@@ -3,3 +3,285 @@ K3
 13
 cModel Technology
 dC:\Users\Matthew\Google Drive\MLH_Ultra Docs\EELE367\HW10
+Econtrol_unit
+Z0 w1397671174
+Z1 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z2 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z3 dC:\Users\Matthew\Documents\GitHub\EELE367_uCat\ModelSim Project
+Z4 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\control_unit.vhd
+Z5 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\control_unit.vhd
+l0
+L19
+VG_B11MaFKz4H7g:E]H0Dl3
+Z6 OV;C;10.1d;51
+32
+Z7 !s108 1397671186.947000
+Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\control_unit.vhd|
+Z9 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\control_unit.vhd|
+Z10 o-work work -2002 -explicit -O0
+Z11 tExplicit 1
+!s100 FjQR[Ze4PR:dLMo3AQW9i2
+!i10b 1
+Acontrol_unit_arch
+R1
+R2
+DEx4 work 12 control_unit 0 22 G_B11MaFKz4H7g:E]H0Dl3
+l52
+L49
+VZWk?K7=h@>ehC;;FC10390
+R6
+32
+R7
+R8
+R9
+R10
+R11
+!s100 DSBhIK[9Yoff_h=]CV8Yd0
+!i10b 1
+Ecpu
+Z12 w1397669494
+R1
+R2
+R3
+Z13 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\cpu.vhd
+Z14 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\cpu.vhd
+l0
+L19
+VM6B40F;j1ZPWFhVHzh:LI1
+R6
+32
+Z15 !s108 1397669502.458000
+Z16 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\cpu.vhd|
+Z17 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\cpu.vhd|
+R10
+R11
+!s100 ;D?5iQGj8=JC]S>PBT97h0
+!i10b 1
+Acpu_arch
+R1
+R2
+DEx4 work 3 cpu 0 22 M6B40F;j1ZPWFhVHzh:LI1
+l38
+L35
+VTX74YC71;RbG9`0eJODF:2
+R6
+32
+R15
+R16
+R17
+R10
+R11
+!s100 ia@J6cULf@l5>GGjkiEa_3
+!i10b 1
+Eio_port_16x8_sync
+Z18 w1397670278
+R1
+R2
+R3
+Z19 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\ModelSim Project\io_port_16x8_sync.vhd
+Z20 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\ModelSim Project\io_port_16x8_sync.vhd
+l0
+L19
+V8fb@TM>aaEY?]Jh7CF:Rd2
+R6
+32
+Z21 !s108 1397670291.044000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\ModelSim Project\io_port_16x8_sync.vhd|
+Z23 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\ModelSim Project\io_port_16x8_sync.vhd|
+R10
+R11
+!s100 ^;oIn9ILD5jP2YU8`3CJm0
+!i10b 1
+Aio_port_16x8_sync_arch
+R1
+R2
+DEx4 work 17 io_port_16x8_sync 0 22 8fb@TM>aaEY?]Jh7CF:Rd2
+l38
+L35
+VM@hYcog5K?MB<dCSjcO`N3
+R6
+32
+R21
+R22
+R23
+R10
+R11
+!s100 i6Ud=0dU9Y[^7`@z_>2Cf2
+!i10b 1
+Ememory
+Z24 w1397673862
+R1
+R2
+R3
+Z25 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\memory.vhd
+Z26 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\memory.vhd
+l0
+L36
+V?UL5=1fIQNdj;K5NAJOcE0
+!s100 bZ`DY03mOP7NcYlVQIl4@3
+R6
+32
+!i10b 1
+Z27 !s108 1397673967.174000
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\memory.vhd|
+Z29 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\memory.vhd|
+R10
+R11
+Amemory_arch
+R1
+R2
+Z30 DEx4 work 6 memory 0 22 ?UL5=1fIQNdj;K5NAJOcE0
+l142
+L88
+V9ad^Ga0S0lW3l32<9@W`>3
+!s100 G:cHgc?z0gjTD_:geoK_m3
+R6
+32
+!i10b 1
+R27
+R28
+R29
+R10
+R11
+Eprocessing_unit
+Z31 w1397671179
+Z32 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+R1
+R2
+R3
+Z33 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\processing_unit.vhd
+Z34 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\processing_unit.vhd
+l0
+L20
+V7UG]ek2LlViT`NzN7bY=Y1
+R6
+32
+Z35 !s108 1397671187.260000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\processing_unit.vhd|
+Z37 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\processing_unit.vhd|
+R10
+R11
+!s100 ZJ48cQfLWn2OJLR8Zl:7S3
+!i10b 1
+Aprocessing_unit_arch
+R32
+R1
+R2
+DEx4 work 15 processing_unit 0 22 7UG]ek2LlViT`NzN7bY=Y1
+l55
+L52
+Vz`E1o;>dCDVa`N]HU4e^X1
+R6
+32
+R35
+R36
+R37
+R10
+R11
+!s100 olc7g5aj:@C@QQT:BAnlL3
+!i10b 1
+Erom_128x8_sync
+Z38 w1397673287
+R1
+R2
+R3
+Z39 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rom_128x8_sync.vhd
+Z40 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rom_128x8_sync.vhd
+l0
+L19
+Vo82W6Kf_QeEFZnh;Td>AD2
+R6
+32
+Z41 !s108 1397673680.305000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rom_128x8_sync.vhd|
+Z43 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rom_128x8_sync.vhd|
+R10
+R11
+!s100 k_DKUoUYWCTlZ?FDba3<00
+!i10b 1
+Arom_128x8_sync_arch
+R1
+R2
+DEx4 work 14 rom_128x8_sync 0 22 o82W6Kf_QeEFZnh;Td>AD2
+l35
+L32
+Vn3PAn>jKnLS1V8C24g;VA0
+R6
+32
+R41
+R42
+R43
+R10
+R11
+!s100 GGDjAPCl09;4RJJniczU93
+!i10b 1
+Erw_96x8_sync
+Z44 w1397670083
+R1
+R2
+R3
+Z45 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rw_96x8_sync.vhd
+Z46 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rw_96x8_sync.vhd
+l0
+L19
+V^f_KeL3Bib0m7TLIbSTzZ3
+R6
+32
+Z47 !s108 1397670098.435000
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rw_96x8_sync.vhd|
+Z49 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\rw_96x8_sync.vhd|
+R10
+R11
+!s100 IgFE=6l;UGLfMn^Z@aXLL1
+!i10b 1
+Arw_96x8_sync_arch
+R1
+R2
+DEx4 work 12 rw_96x8_sync 0 22 ^f_KeL3Bib0m7TLIbSTzZ3
+l38
+L35
+V>]zY7z05AKX13S1zf<M[>3
+R6
+32
+R47
+R48
+R49
+R10
+R11
+!s100 HoVP5Uf[[8dK@BNdS9LGG2
+!i10b 1
+Eucat
+Z50 w1397672905
+R1
+R2
+R3
+Z51 8C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\ucat.vhd
+Z52 FC:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\ucat.vhd
+l0
+L19
+V?DV5VE2z@hzg3bNX>^0dU1
+R6
+32
+Z53 !s108 1397672912.069000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\ucat.vhd|
+Z55 !s107 C:\Users\Matthew\Documents\GitHub\EELE367_uCat\Source\ucat.vhd|
+R10
+R11
+!s100 W9DLUZGkfJ1Zbe7X5I=mh0
+!i10b 1
+Aucat_arch
+R1
+R2
+DEx4 work 4 ucat 0 22 ?DV5VE2z@hzg3bNX>^0dU1
+l141
+L63
+VfiaTkLlW@ibL0AYfTF:9^0
+R6
+32
+R53
+R54
+R55
+R10
+R11
+!s100 O:W80?d=@`jE`UFzU<??K0
+!i10b 1
