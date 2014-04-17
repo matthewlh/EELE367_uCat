@@ -126,7 +126,7 @@ architecture memory_arch of memory is
     
       -- input control
       address       : in STD_LOGIC_VECTOR(7 downto 0);
-      write         : in STD_LOGIC;
+      read          : in STD_LOGIC;
     
       -- data input
       data_in_00    : in STD_LOGIC_VECTOR(7 downto 0);
@@ -217,7 +217,7 @@ architecture memory_arch of memory is
         reset       => reset,
                
         address     => address,  
-        write       => write,
+        read        => write,
         
         data_in_00  => port_in_00,
         data_in_01  => port_in_01,
