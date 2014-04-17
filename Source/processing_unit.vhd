@@ -51,9 +51,144 @@ end entity;
 
 architecture processing_unit_arch of processing_unit is
 
+	-- signal declaration
+	signal	BUS2 			: STD_LOGIC_VECTOR(7 downto 0);
+	signal	BUS1 			: STD_LOGIC_VECTOR(7 downto 0);
+	
+	signal	PC_out		: STD_LOGIC_VECTOR(7 downto 0);	
+	signal	A_out 		: STD_LOGIC_VECTOR(7 downto 0);	
+	signal	B_out 		: STD_LOGIC_VECTOR(7 downto 0);
+	signal	ALU_out 		: STD_LOGIC_VECTOR(7 downto 0);
+	signal	CCR_out 		: STD_LOGIC_VECTOR(7 downto 0);
+	
 
-  begin 
+	-- component declaration
+	component cpu_register is 
+		port(
+			-- Synchronous Inputs
+			clock         	: in STD_LOGIC;
+			reset         	: in STD_LOGIC;
+			 
+			-- control
+			load				: in STD_LOGIC;
+			increment		: in STD_LOGIC;
+			 
+			-- IO
+			data_in			: in STD_LOGIC_VECTOR(7 downto 0);
+			data_out			: out STD_LOGIC_VECTOR(7 downto 0)			
+		);
+	end component;
+
+	begin 
     
+		-- component instantiation
+		reg_IR  : cpu_register
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				load    		=> IR_Load,
+				increment	=>	'0',
+				
+				--IO
+				data_in		=> BUS2,
+				data_out		=> IR
+			);
+			
+		reg_MAR  : cpu_register
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				load    		=> MAR_Load,
+				increment	=>	'0',
+				
+				--IO
+				data_in		=> BUS2,
+				data_out		=> address
+			);
+			
+		reg_PC  : cpu_register
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				load    		=> PC_Load,
+				increment	=>	PC_Inc,
+				
+				--IO
+				data_in		=> BUS2,
+				data_out		=> PC_out
+			);
+			
+		reg_A  : cpu_register
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				load    		=> A_Load,
+				increment	=>	'0',
+				
+				--IO
+				data_in		=> BUS2,
+				data_out		=> A_out
+			);
+			
+		reg_B  : cpu_register
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				load    		=> B_Load,
+				increment	=>	'0',
+				
+				--IO
+				data_in		=> BUS2,
+				data_out		=> B_out
+			);
+			
+		reg_CCR  : cpu_register
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				load    		=> CCR_Load,
+				increment	=>	'0',
+				
+				--IO
+				data_in		=> ALU_out,
+				data_out		=> CCR_out
+			);
+			
+		CCR_Result <= CCR_out(3 downto 0);
+		
+		
+		-- BUS 2 MUX
+		BUS2 <= 	ALU_out 		when (BUS2_Sel = "00") else
+					BUS1 			when (BUS2_Sel = "01") else
+					from_memory	when (BUS2_Sel = "01") else
+					x"00";
+		
+		-- BUS 1 MUX
+		BUS1 <= 	PC_out 		when (BUS1_Sel = "00") else
+					A_out 		when (BUS1_Sel = "01") else
+					B_out			when (BUS1_Sel = "01") else
+					x"00";
+					
+		to_memory	<= BUS1;
+		
     
 end architecture;
 

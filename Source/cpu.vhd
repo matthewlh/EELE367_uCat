@@ -115,24 +115,7 @@ architecture cpu_arch of cpu is
 			Bus1_Sel    : in  STD_LOGIC_VECTOR (1 downto 0);                          
 			Bus2_Sel    : in  STD_LOGIC_VECTOR (1 downto 0)
 		);
-	end component;	
-	
-	component cpu_register is 
-		port(
-			-- Synchronous Inputs
-			clock         	: in STD_LOGIC;
-			reset         	: in STD_LOGIC;
-			 
-			-- control
-			load				: in STD_LOGIC;
-			increment		: in STD_LOGIC;
-			 
-			-- IO
-			data_in			: in STD_LOGIC_VECTOR(7 downto 0);
-			data_out			: out STD_LOGIC_VECTOR(7 downto 0)			
-		);
-	end component;
-	
+	end component;		
 
 	begin 
 	
