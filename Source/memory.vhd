@@ -265,6 +265,8 @@ architecture memory_arch of memory is
         data_out_14 => port_out_14,
         data_out_15 => port_out_15
       );
+		
+	 address_uns <= unsigned(address);
       
     -- mux data_out
     data_out <= rom_data_out          when (address_uns >= x"00" and address_uns <= x"7F") else
