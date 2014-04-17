@@ -42,15 +42,6 @@ set_global_assignment -name TOP_LEVEL_ENTITY top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:42:49  APRIL 16, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
-set_global_assignment -name VHDL_FILE ../Source/ucat.vhd
-set_global_assignment -name VHDL_FILE ../Source/rw_96x8_sync.vhd
-set_global_assignment -name VHDL_FILE ../Source/rom_128x8_sync.vhd
-set_global_assignment -name VHDL_FILE ../Source/processing_unit.vhd
-set_global_assignment -name VHDL_FILE ../Source/output_ports_16x8.vhd
-set_global_assignment -name VHDL_FILE ../Source/memory.vhd
-set_global_assignment -name VHDL_FILE ../Source/input_ports_16x8.vhd
-set_global_assignment -name VHDL_FILE ../Source/cpu.vhd
-set_global_assignment -name VHDL_FILE ../Source/control_unit.vhd
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -58,3 +49,87 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_D3 -to SW2[0]
+set_location_assignment PIN_C3 -to SW2[1]
+set_location_assignment PIN_A2 -to SW2[2]
+set_location_assignment PIN_A3 -to SW2[3]
+set_location_assignment PIN_B3 -to SW2[4]
+set_location_assignment PIN_B4 -to SW2[5]
+set_location_assignment PIN_A4 -to SW2[6]
+set_location_assignment PIN_B5 -to SW2[7]
+set_location_assignment PIN_A5 -to SW1[0]
+set_location_assignment PIN_D5 -to SW1[1]
+set_location_assignment PIN_B6 -to SW1[2]
+set_location_assignment PIN_A6 -to SW1[3]
+set_location_assignment PIN_B7 -to SW1[4]
+set_location_assignment PIN_D6 -to SW1[5]
+set_location_assignment PIN_A7 -to SW1[6]
+set_location_assignment PIN_C6 -to SW1[7]
+set_location_assignment PIN_E7 -to LED_Red[7]
+set_location_assignment PIN_D8 -to LED_Red[6]
+set_location_assignment PIN_E8 -to LED_Red[5]
+set_location_assignment PIN_F8 -to LED_Red[4]
+set_location_assignment PIN_F9 -to LED_Red[3]
+set_location_assignment PIN_E9 -to LED_Red[2]
+set_location_assignment PIN_C9 -to LED_Red[1]
+set_location_assignment PIN_D9 -to LED_Red[0]
+set_location_assignment PIN_E11 -to LED_Blue[7]
+set_location_assignment PIN_E10 -to LED_Blue[6]
+set_location_assignment PIN_C11 -to LED_Blue[5]
+set_location_assignment PIN_B11 -to LED_Blue[4]
+set_location_assignment PIN_A12 -to LED_Blue[3]
+set_location_assignment PIN_D11 -to LED_Blue[2]
+set_location_assignment PIN_D12 -to LED_Blue[1]
+set_location_assignment PIN_B12 -to LED_Blue[0]
+set_location_assignment PIN_F13 -to LED20[6]
+set_location_assignment PIN_T15 -to LED20[1]
+set_location_assignment PIN_T14 -to LED20[4]
+set_location_assignment PIN_T13 -to LED20[0]
+set_location_assignment PIN_R13 -to LED20[5]
+set_location_assignment PIN_T12 -to LED20[3]
+set_location_assignment PIN_R12 -to LED20[2]
+set_location_assignment PIN_T11 -to LED20[7]
+set_location_assignment PIN_T10 -to LED19[6]
+set_location_assignment PIN_R11 -to LED19[1]
+set_location_assignment PIN_P11 -to LED19[4]
+set_location_assignment PIN_R10 -to LED19[0]
+set_location_assignment PIN_N12 -to LED19[5]
+set_location_assignment PIN_P9 -to LED19[3]
+set_location_assignment PIN_N9 -to LED19[2]
+set_location_assignment PIN_N11 -to LED19[7]
+set_location_assignment PIN_R16 -to LED18[6]
+set_location_assignment PIN_L15 -to LED18[1]
+set_location_assignment PIN_P15 -to LED18[4]
+set_location_assignment PIN_P16 -to LED18[0]
+set_location_assignment PIN_R14 -to LED18[5]
+set_location_assignment PIN_N16 -to LED18[3]
+set_location_assignment PIN_N15 -to LED18[2]
+set_location_assignment PIN_P14 -to LED18[7]
+set_location_assignment PIN_L14 -to LED17[6]
+set_location_assignment PIN_N14 -to LED17[1]
+set_location_assignment PIN_M10 -to LED17[4]
+set_location_assignment PIN_L13 -to LED17[0]
+set_location_assignment PIN_J16 -to LED17[5]
+set_location_assignment PIN_K15 -to LED17[3]
+set_location_assignment PIN_J13 -to LED17[2]
+set_location_assignment PIN_J14 -to LED17[7]
+set_global_assignment -name VHDL_FILE ../Source/clock_div.vhd
+set_global_assignment -name VHDL_FILE ../Source/character_decoder_16.vhd
+set_global_assignment -name VHDL_FILE ../Source/bcd_decoder.vhd
+set_global_assignment -name VHDL_FILE ../Source/output_port_16x8_sync.vhd
+set_global_assignment -name VHDL_FILE ../Source/input_port_16x8_sync.vhd
+set_global_assignment -name VHDL_FILE ../Source/ucat.vhd
+set_global_assignment -name VHDL_FILE ../Source/rw_96x8_sync.vhd
+set_global_assignment -name VHDL_FILE ../Source/rom_128x8_sync.vhd
+set_global_assignment -name VHDL_FILE ../Source/processing_unit.vhd
+set_global_assignment -name VHDL_FILE ../Source/memory.vhd
+set_global_assignment -name VHDL_FILE ../Source/cpu.vhd
+set_global_assignment -name VHDL_FILE ../Source/control_unit.vhd
+set_global_assignment -name VHDL_FILE ../Source/top.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
