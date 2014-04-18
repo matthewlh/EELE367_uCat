@@ -48,9 +48,7 @@ architecture cpu_register_arch of cpu_register is
 				elsif(rising_edge(clock)) then 
 					if(load = '1') then 
 						data <= data_in;
-					end if;
-					
-					if(increment = '1') then 
+					elsif(increment = '1') then 
 						data <= STD_LOGIC_VECTOR(UNSIGNED(data) + 1);
 					end if;
 				end if;			

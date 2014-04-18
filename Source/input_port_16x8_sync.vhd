@@ -56,7 +56,7 @@ architecture input_port_16x8_sync_arch of input_port_16x8_sync is
 	constant START_ADDR	: integer := 240;
 
 	-- Type Declaration
-	type RW_type is array (0 to 16) of STD_LOGIC_VECTOR(7 downto 0);
+	type RW_type is array (0 to 15) of STD_LOGIC_VECTOR(7 downto 0);
   
 	-- Signal Declaration
 	signal RW : RW_type;

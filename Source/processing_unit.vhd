@@ -66,8 +66,8 @@ architecture processing_unit_arch of processing_unit is
 	component cpu_register is 
 		port(
 			-- Synchronous Inputs
-			clock         	: in STD_LOGIC;
-			reset         	: in STD_LOGIC;
+			clock         : in STD_LOGIC;
+			reset         : in STD_LOGIC;
 			 
 			-- control
 			load				: in STD_LOGIC;
@@ -75,7 +75,7 @@ architecture processing_unit_arch of processing_unit is
 			 
 			-- IO
 			data_in			: in STD_LOGIC_VECTOR(7 downto 0);
-			data_out			: out STD_LOGIC_VECTOR(7 downto 0)			
+			data_out		: out STD_LOGIC_VECTOR(7 downto 0)		
 		);
 	end component;
 
@@ -178,13 +178,13 @@ architecture processing_unit_arch of processing_unit is
 		-- BUS 2 MUX
 		BUS2 <= 	ALU_out 		when (BUS2_Sel = "00") else
 					BUS1 			when (BUS2_Sel = "01") else
-					from_memory	when (BUS2_Sel = "01") else
+					from_memory	when (BUS2_Sel = "10") else
 					x"00";
 		
 		-- BUS 1 MUX
 		BUS1 <= 	PC_out 		when (BUS1_Sel = "00") else
 					A_out 		when (BUS1_Sel = "01") else
-					B_out			when (BUS1_Sel = "01") else
+					B_out			when (BUS1_Sel = "10") else
 					x"00";
 					
 		to_memory	<= BUS1;

@@ -46,7 +46,7 @@ architecture rw_96x8_sync_arch of rw_96x8_sync is
   
 	begin
     
-		Memory : process (clock)
+		Memory : process (clock, reset)
 			begin
 				if(reset = '0') then 
 					RW <= (others => x"00");
