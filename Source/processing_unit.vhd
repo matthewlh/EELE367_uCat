@@ -59,6 +59,7 @@ architecture processing_unit_arch of processing_unit is
 	signal	A_out 		: STD_LOGIC_VECTOR(7 downto 0);	
 	signal	B_out 		: STD_LOGIC_VECTOR(7 downto 0);
 	signal	ALU_out 		: STD_LOGIC_VECTOR(7 downto 0);
+	signal	ALU_CCR_out	: STD_LOGIC_VECTOR(3 downto 0);
 	signal	CCR_out 		: STD_LOGIC_VECTOR(7 downto 0);
 	
 
@@ -76,6 +77,25 @@ architecture processing_unit_arch of processing_unit is
 			-- IO
 			data_in			: in STD_LOGIC_VECTOR(7 downto 0);
 			data_out		: out STD_LOGIC_VECTOR(7 downto 0)		
+		);
+	end component;
+	
+	component alu is
+		port(
+			-- Synchronous Inputs
+			clock         	: in STD_LOGIC;
+			reset         	: in STD_LOGIC;
+			 
+			-- control
+			ALU_Sel			: in STD_LOGIC_VECTOR(2 downto 0);
+			 
+			-- Inputs
+			A					: in STD_LOGIC_VECTOR(7 downto 0);
+			B					: in STD_LOGIC_VECTOR(7 downto 0);
+			 
+			-- Outputs
+			data_out			: out STD_LOGIC_VECTOR(7 downto 0);
+			CCR_out			: out STD_LOGIC_VECTOR(3 downto 0)
 		);
 	end component;
 
@@ -157,6 +177,24 @@ architecture processing_unit_arch of processing_unit is
 				data_out		=> B_out
 			);
 			
+		ALU_1	: alu
+			port map(
+				-- Synchronous Inputs
+				clock       => clock,        
+				reset     	=> reset,  
+				
+				-- control
+				ALU_Sel    	=> ALU_Sel,
+				
+				-- inputs
+				A				=> A_out,
+				B				=> B_out,
+				
+				-- outputs
+				data_out		=> ALU_out,
+				CCR_out		=> ALU_CCR_out
+			);
+			
 		reg_CCR  : cpu_register
 			port map(
 				-- Synchronous Inputs
@@ -168,7 +206,7 @@ architecture processing_unit_arch of processing_unit is
 				increment	=>	'0',
 				
 				--IO
-				data_in		=> ALU_out,
+				data_in		=> "0000" & ALU_CCR_out,
 				data_out		=> CCR_out
 			);
 			

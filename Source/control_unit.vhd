@@ -67,7 +67,12 @@ architecture control_unit_arch of control_unit is
 	constant DECA     : std_logic_vector (7 downto 0) := x"48";   -- A <= A - 1
 	constant DECB     : std_logic_vector (7 downto 0) := x"49";   -- B <= B - 1
 	
-	constant ALU_Sel_None		: STD_LOGIC_VECTOR(2 downto 0) := "000";
+	constant ALU_Sel_ADD		: STD_LOGIC_VECTOR(2 downto 0) := "000";
+	constant ALU_Sel_SUB		: STD_LOGIC_VECTOR(2 downto 0) := "001";
+	constant ALU_Sel_AND		: STD_LOGIC_VECTOR(2 downto 0) := "010";
+	constant ALU_Sel_OR		: STD_LOGIC_VECTOR(2 downto 0) := "011";
+	constant ALU_Sel_INC		: STD_LOGIC_VECTOR(2 downto 0) := "100";
+	constant ALU_Sel_DEC		: STD_LOGIC_VECTOR(2 downto 0) := "101";
 	
 	constant Bus1_Sel_PC			: STD_LOGIC_VECTOR(1 downto 0) := "00";
 	constant Bus1_Sel_A			: STD_LOGIC_VECTOR(1 downto 0) := "01";
@@ -182,7 +187,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_Bus1;
@@ -194,7 +199,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '1';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -206,7 +211,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -220,7 +225,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -234,7 +239,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_Bus1;
@@ -246,7 +251,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '1';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -258,7 +263,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '1';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -272,7 +277,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_Bus1;
@@ -284,7 +289,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '1';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -296,7 +301,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -308,7 +313,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_A;
 						Bus2_Sel		<= Bus2_Sel_ALU;
@@ -322,7 +327,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_Bus1;
@@ -334,7 +339,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -346,7 +351,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
@@ -359,7 +364,7 @@ architecture control_unit_arch of control_unit is
 						PC_Inc		<= '0';
 						A_Load		<= '0';
 						B_Load		<= '0';
-						ALU_Sel		<= ALU_Sel_None;
+						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_ALU;
