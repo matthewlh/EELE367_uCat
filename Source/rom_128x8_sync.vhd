@@ -54,7 +54,7 @@ architecture rom_128x8_sync_arch of rom_128x8_sync is
 	constant DECB     : std_logic_vector (7 downto 0) := x"49";   -- B <= B - 1
 	
 	-- Type Declaration
-	type DATA_type is array (0 to 128) of STD_LOGIC_VECTOR(7 downto 0);
+	type DATA_type is array (0 to 127) of STD_LOGIC_VECTOR(7 downto 0);
   
 	-- Signal Declaration
 	signal DATA : DATA_type := (
@@ -68,7 +68,7 @@ architecture rom_128x8_sync_arch of rom_128x8_sync is
 				7      => x"E1", 
 				8      => BRA,      -- testing Branch Always
 				9      => x"00",
-				others => x"00");
+				others => x"00"
 			); 
  
 	begin

@@ -61,9 +61,11 @@ architecture output_port_16x8_sync_arch of output_port_16x8_sync is
   
 	begin
     
-		Memory : process (clock)
+		Memory : process (clock, reset)
 			begin
-				if(rising_edge(Clock)) then
+				if(reset = '0') then 
+					RW <= (others => x"00");
+				elsif(rising_edge(Clock)) then
 					if(address >= x"E0" and address <= x"EF") then
 						if(write = '1') then
 							RW(to_integer(unsigned(address)) - START_ADDR) <= Data_In;

@@ -48,7 +48,9 @@ architecture rw_96x8_sync_arch of rw_96x8_sync is
     
 		Memory : process (clock)
 			begin
-				if(rising_edge(Clock)) then
+				if(reset = '0') then 
+					RW <= (others => x"00");
+				elsif(rising_edge(Clock)) then
 					if(address >= x"80" and address <= x"DF") then
 						if(write = '1') then
 							RW(to_integer(unsigned(address)) - START_ADDR) <= Data_In;

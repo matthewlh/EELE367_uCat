@@ -63,9 +63,11 @@ architecture input_port_16x8_sync_arch of input_port_16x8_sync is
   
 	begin
     
-		Memory : process (clock)
+		Memory : process (clock, reset)
 			begin
-				if(rising_edge(Clock)) then
+				if(reset = '0') then
+					data_out <= x"00";
+				elsif(rising_edge(Clock)) then
 					if(address >= x"F0" and address <= x"FF") then
 						if(read = '1') then
 							data_out <= RW(to_integer(unsigned(address)) - START_ADDR);
