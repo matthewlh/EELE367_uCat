@@ -93,10 +93,31 @@ architecture control_unit_arch of control_unit is
 								S_LDA_IMM_1,
 								S_LDA_IMM_2,
 								
+								S_LDA_DIR_0,	-- LDA_DIR states
+								S_LDA_DIR_1,
+								S_LDA_DIR_2,
+								S_LDA_DIR_3,
+								S_LDA_DIR_4,
+								
 								S_STA_DIR_0,	-- STA_DIR states
 								S_STA_DIR_1,
 								S_STA_DIR_2,
 								S_STA_DIR_3,
+								
+								S_LDB_IMM_0,	-- LDB_IMM states
+								S_LDB_IMM_1,
+								S_LDB_IMM_2,
+								
+								S_LDB_DIR_0,	-- LDB_DIR states
+								S_LDB_DIR_1,
+								S_LDB_DIR_2,
+								S_LDB_DIR_3,
+								S_LDB_DIR_4,
+								
+								S_STB_DIR_0,	-- STB_DIR states
+								S_STB_DIR_1,
+								S_STB_DIR_2,
+								S_STB_DIR_3,
 								
 								S_BRA_0,			-- BRA states
 								S_BRA_1,
@@ -149,6 +170,18 @@ architecture control_unit_arch of control_unit is
 					next_state <= S_LDA_IMM_2;
 				elsif(current_state = S_LDA_IMM_2) then
 					next_state <= S_FETCH_0;
+				
+				-- LDA_DIR states				
+				elsif(current_state = S_LDA_DIR_0) then
+					next_state <= S_LDA_DIR_1;
+				elsif(current_state = S_LDA_DIR_1) then
+					next_state <= S_LDA_DIR_2;
+				elsif(current_state = S_LDA_DIR_2) then
+					next_state <= S_LDA_DIR_3;
+				elsif(current_state = S_LDA_DIR_3) then
+					next_state <= S_LDA_DIR_4;
+				elsif(current_state = S_LDA_DIR_4) then
+					next_state <= S_FETCH_0;
 					
 				-- STA_DIR states
 				elsif(current_state = S_STA_DIR_0) then
@@ -158,6 +191,36 @@ architecture control_unit_arch of control_unit is
 				elsif(current_state = S_STA_DIR_2) then
 					next_state <= S_STA_DIR_3;
 				elsif(current_state = S_STA_DIR_3) then
+					next_state <= S_FETCH_0;
+				
+				-- LDB_IMM states				
+				elsif(current_state = S_LDB_IMM_0) then
+					next_state <= S_LDB_IMM_1;
+				elsif(current_state = S_LDB_IMM_1) then
+					next_state <= S_LDB_IMM_2;
+				elsif(current_state = S_LDB_IMM_2) then
+					next_state <= S_FETCH_0;
+				
+				-- LDB_DIR states				
+				elsif(current_state = S_LDB_DIR_0) then
+					next_state <= S_LDB_DIR_1;
+				elsif(current_state = S_LDB_DIR_1) then
+					next_state <= S_LDB_DIR_2;
+				elsif(current_state = S_LDB_DIR_2) then
+					next_state <= S_LDB_DIR_3;
+				elsif(current_state = S_LDB_DIR_3) then
+					next_state <= S_LDB_DIR_4;
+				elsif(current_state = S_LDB_DIR_4) then
+					next_state <= S_FETCH_0;
+					
+				-- STB_DIR states
+				elsif(current_state = S_STB_DIR_0) then
+					next_state <= S_STB_DIR_1;
+				elsif(current_state = S_STB_DIR_1) then
+					next_state <= S_STB_DIR_2;
+				elsif(current_state = S_STB_DIR_2) then
+					next_state <= S_STB_DIR_3;
+				elsif(current_state = S_STB_DIR_3) then
 					next_state <= S_FETCH_0;
 					
 				-- BRA states
@@ -269,6 +332,68 @@ architecture control_unit_arch of control_unit is
 						Bus2_Sel		<= Bus2_Sel_from_mem;
 						write			<= '0';
 						
+					-- LDA_DIR states
+					when S_LDA_DIR_0 =>			-- fetch operand (address) from memory
+						IR_Load 		<= '0';		
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+					when S_LDA_DIR_1 =>			-- put address from memory onto bus2
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '1';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDA_DIR_2 =>			-- load the address from memory into the MAR
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDA_DIR_3 =>			-- put data from memory onto bus2
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDA_DIR_4 =>			-- put data from memory onto bus2
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+						
 					-- STA_DIR states
 					when S_STA_DIR_0 =>
 						IR_Load 		<= '0';
@@ -316,6 +441,156 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '0';
 						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '1';
+						
+					-- LDB_IMM states
+					when S_LDB_IMM_0 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+					when S_LDB_IMM_1 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '1';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDB_IMM_2 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '1';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+						
+					-- LDB_DIR states
+					when S_LDB_DIR_0 =>			-- fetch operand (address) from memory
+						IR_Load 		<= '0';		
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+					when S_LDB_DIR_1 =>			-- put address from memory onto bus2
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '1';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDB_DIR_2 =>			-- load the address from memory into the MAR
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDB_DIR_3 =>			-- put data from memory onto bus2
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_LDB_DIR_4 =>			-- put data from memory onto bus2
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '1';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+						
+					-- STB_DIR states
+					when S_STB_DIR_0 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+					when S_STB_DIR_1 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '1';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_STB_DIR_2 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_STB_DIR_3 =>
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_B;
 						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '1';
 						

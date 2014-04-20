@@ -65,5 +65,7 @@ architecture alu_arch of alu is
 					data_out <= x"00";
 				end if;
 		end process;
+		
+		CCR_out <= N & Z & V & C;
 	
 end architecture;
