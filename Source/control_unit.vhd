@@ -74,6 +74,11 @@ architecture control_unit_arch of control_unit is
 	constant ALU_Sel_INC		: STD_LOGIC_VECTOR(2 downto 0) := "100";
 	constant ALU_Sel_DEC		: STD_LOGIC_VECTOR(2 downto 0) := "101";
 	
+	constant CCR_OFFSET_N	: integer := 3;
+	constant CCR_OFFSET_Z	: integer := 2;
+	constant CCR_OFFSET_V	: integer := 1;
+	constant CCR_OFFSET_C	: integer := 0;
+	
 	constant Bus1_Sel_PC			: STD_LOGIC_VECTOR(1 downto 0) := "00";
 	constant Bus1_Sel_A			: STD_LOGIC_VECTOR(1 downto 0) := "01";
 	constant Bus1_Sel_B			: STD_LOGIC_VECTOR(1 downto 0) := "10";
@@ -121,7 +126,11 @@ architecture control_unit_arch of control_unit is
 								
 								S_BRA_0,			-- BRA states
 								S_BRA_1,
-								S_BRA_2
+								S_BRA_2,
+								
+								S_BEQ_0,			-- BEQ states
+								S_BEQ_1,
+								S_BEQ_2
 							 );
 							 
 	--signal decalration
@@ -169,6 +178,8 @@ architecture control_unit_arch of control_unit is
 						
 					elsif(IR = BRA) then 
 						next_state <= S_BRA_0;
+					elsif(IR = BEQ) then 
+						next_state <= S_BEQ_0;
 					else
 						next_state <= S_FETCH_0;
 					end if;
@@ -239,6 +250,18 @@ architecture control_unit_arch of control_unit is
 				elsif(current_state = S_BRA_1) then
 					next_state <= S_BRA_2;
 				elsif(current_state = S_BRA_2) then
+					next_state <= S_FETCH_0;
+					
+				-- BEQ states
+				elsif(current_state = S_BEQ_0) then
+					next_state <= S_BEQ_1;
+				elsif(current_state = S_BEQ_1) then
+					if(CCR_Result(CCR_OFFSET_Z) = '1') then
+						next_state <= S_BEQ_2;
+					else
+						next_state <= S_FETCH_0;
+					end if;
+				elsif(current_state = S_BEQ_2) then
 					next_state <= S_FETCH_0;
 					
 				-- if we get lost
@@ -631,6 +654,44 @@ architecture control_unit_arch of control_unit is
 						write			<= '0';
 					when S_BRA_2 =>
 						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '1';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+						
+					-- BRA states
+					when S_BEQ_0 =>				-- transfer address from PC to MAR
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '1';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+					when S_BEQ_1 =>				-- fetch operand from address in MAR, increment PC
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '1';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_PC;
+						Bus2_Sel		<= Bus2_Sel_from_mem;
+						write			<= '0';
+					when S_BEQ_2 =>				-- next state logic will put us here if Z='1'
+						IR_Load 		<= '0';		-- so load address into PC
 						MAR_LOAD 	<= '0';
 						PC_Load		<= '1';
 						PC_Inc		<= '0';
