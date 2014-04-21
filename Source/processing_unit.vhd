@@ -55,12 +55,13 @@ architecture processing_unit_arch of processing_unit is
 	signal	BUS2 			: STD_LOGIC_VECTOR(7 downto 0);
 	signal	BUS1 			: STD_LOGIC_VECTOR(7 downto 0);
 	
-	signal	PC_out		: STD_LOGIC_VECTOR(7 downto 0);	
-	signal	A_out 		: STD_LOGIC_VECTOR(7 downto 0);	
-	signal	B_out 		: STD_LOGIC_VECTOR(7 downto 0);
-	signal	ALU_out 		: STD_LOGIC_VECTOR(7 downto 0);
-	signal	ALU_CCR_out	: STD_LOGIC_VECTOR(3 downto 0);
-	signal	CCR_out 		: STD_LOGIC_VECTOR(7 downto 0);
+	signal	PC_out		          : STD_LOGIC_VECTOR(7 downto 0);	
+	signal	A_out 		          : STD_LOGIC_VECTOR(7 downto 0);	
+	signal	B_out 		          : STD_LOGIC_VECTOR(7 downto 0);
+	signal	ALU_out 		        : STD_LOGIC_VECTOR(7 downto 0);
+	signal	ALU_CCR_out	      : STD_LOGIC_VECTOR(3 downto 0);
+	signal	ALU_CCR_out_8bits	: STD_LOGIC_VECTOR(7 downto 0);
+	signal	CCR_out 		        : STD_LOGIC_VECTOR(7 downto 0);
 	
 
 	-- component declaration
@@ -206,10 +207,11 @@ architecture processing_unit_arch of processing_unit is
 				increment	=>	'0',
 				
 				--IO
-				data_in		=> "0000" & ALU_CCR_out,
+				data_in		=> ALU_CCR_out_8bits,
 				data_out		=> CCR_out
 			);
 			
+		ALU_CCR_out_8bits <= "0000" & ALU_CCR_out;
 		CCR_Result <= CCR_out(3 downto 0);
 		
 		

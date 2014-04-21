@@ -58,17 +58,37 @@ architecture rom_128x8_sync_arch of rom_128x8_sync is
   
 	-- Signal Declaration
 	signal DATA : DATA_type := (
-				0      => LDA_IMM,  -- testing Load A Imm
-				1      => x"AA",     
-				2      => STA_DIR,  -- testing Store A Dir (Port Out 00)
-				3      => x"E0",  
-				4      => LDA_IMM,  -- testing Load A Imm
-				5      => x"CC",     
-				6      => STA_DIR,  -- testing Store A Dir (Port Out 01)
-				7      => x"E1", 
-				8      => BRA,      -- testing Branch Always
-				9      => x"00",
-				others => x"00"
+				0 => LDA_IMM,   -- testing Load A Imm
+				1 => x"AA",     
+				2 => STA_DIR,   -- testing Store A Dir (Port Out 00)
+				3 => x"E0",  
+				4 => LDA_IMM,   -- testing Load A Imm
+				5 => x"CC",     
+				6 => STA_DIR,   -- testing Store A Dir (Port Out 01)
+				7 => x"E1",
+				
+				8 => LDA_DIR,   -- Test Load A Dir
+				9 => x"F1",     -- load from port in 01
+				
+			 10 => STA_DIR,   -- store value from port in 00 in A ,
+			 11 => x"E6",     -- to port out 06 (LED17 and 18)
+			 
+			 12 => LDB_IMM,   -- test load B Imm
+			 13 => x"DD",
+			 
+			 14 => STB_DIR,   -- test store B dir
+			 15 => x"E7",
+				
+			 16 => LDB_DIR,   -- test load B Dir
+			 17 => x"F2",
+			 
+			 18 => STB_DIR,
+			 19 => x"E7",
+			 
+			 20 => BRA,       -- testing Branch Always
+			 21 => x"00",     -- branch to start of program
+				
+			others => x"00"
 			); 
  
 	begin

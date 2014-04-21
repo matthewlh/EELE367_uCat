@@ -155,8 +155,18 @@ architecture control_unit_arch of control_unit is
 				elsif(current_state = S_DECODE_0) then
 					if(IR = LDA_IMM) then
 						next_state <= S_LDA_IMM_0;
+					elsif(IR = LDA_DIR) then
+						next_state <= S_LDA_DIR_0;
 					elsif(IR = STA_DIR) then
 						next_state <= S_STA_DIR_0;
+						
+					elsif(IR = LDB_IMM) then
+						next_state <= S_LDB_IMM_0;
+					elsif(IR = LDB_DIR) then
+						next_state <= S_LDB_DIR_0;
+					elsif(IR = STB_DIR) then
+						next_state <= S_STB_DIR_0;
+						
 					elsif(IR = BRA) then 
 						next_state <= S_BRA_0;
 					else

@@ -69,9 +69,9 @@ architecture input_port_16x8_sync_arch of input_port_16x8_sync is
 					data_out <= x"00";
 				elsif(rising_edge(Clock)) then
 					if(address >= x"F0" and address <= x"FF") then
-						if(read = '1') then
+						--if(read = '1') then
 							data_out <= RW(to_integer(unsigned(address)) - START_ADDR);
-						end if;
+						--end if;
 					end if;
 				end if;
 		end process; 
