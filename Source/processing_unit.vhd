@@ -83,10 +83,6 @@ architecture processing_unit_arch of processing_unit is
 	
 	component alu is
 		port(
-			-- Synchronous Inputs
-			clock         	: in STD_LOGIC;
-			reset         	: in STD_LOGIC;
-			 
 			-- control
 			ALU_Sel			: in STD_LOGIC_VECTOR(2 downto 0);
 			 
@@ -180,10 +176,6 @@ architecture processing_unit_arch of processing_unit is
 			
 		ALU_1	: alu
 			port map(
-				-- Synchronous Inputs
-				clock       => clock,        
-				reset     	=> reset,  
-				
 				-- control
 				ALU_Sel    	=> ALU_Sel,
 				
