@@ -188,7 +188,7 @@ architecture processing_unit_arch of processing_unit is
 				ALU_Sel    	=> ALU_Sel,
 				
 				-- inputs
-				A				=> A_out,
+				A				=> BUS1,
 				B				=> B_out,
 				
 				-- outputs
