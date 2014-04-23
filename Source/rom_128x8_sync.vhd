@@ -86,15 +86,25 @@ architecture rom_128x8_sync_arch of rom_128x8_sync is
 			 19 => x"E7",
 			 
 			 20 => BEQ,       -- test BEQ by skipping over the following load and store if Z = '1'
-			 21 => x"1A",     -- 0x1A = 26
+			 21 => x"24",     -- 0x1A = 26
 			 
 			 22 => LDA_IMM,   -- Load A Imm
 			 23 => x"FF",     
 			 24 => STA_DIR,   -- testing Store A Dir (Port Out 00)
 			 25 => x"E0", 
 			 
-			 26 => BRA,       -- testing Branch Always
-			 27 => x"00",     -- branch to start of program
+			 26 => ADD_AB,	  -- Test ALU instructions
+			 27 => SUB_AB,
+			 28 => AND_AB,
+			 29 => OR_AB,
+			 
+			 30 => INCA,
+			 31 => DECA,
+			 32 => INCB,
+			 33 => DECB,
+			 
+			 34 => BRA,       -- testing Branch Always
+			 35 => x"00",     -- branch to start of program
 				
 			others => x"00"
 			); 
