@@ -120,7 +120,7 @@ architecture top_arch of top is
 		Char20 : character_decoder_16
 		port map
 		(
-		  INPUT_CODE => port_out_07_to_decoder(7 downto 4),
+		  INPUT_CODE => port_out_07_to_decoder(3 downto 0),
 		  Decimal_Point => '0',
 		  OUTPUT_DISPLAY => LED20
 		);
@@ -128,7 +128,7 @@ architecture top_arch of top is
 		Char19 : character_decoder_16
 		port map
 		(
-		  INPUT_CODE => port_out_07_to_decoder(3 downto 0),
+		  INPUT_CODE => port_out_07_to_decoder(7 downto 4),
 		  Decimal_Point => '0',
 		  OUTPUT_DISPLAY => LED19
 		);
@@ -136,7 +136,7 @@ architecture top_arch of top is
 		Char18 : character_decoder_16
 		port map
 		(
-		  INPUT_CODE => port_out_06_to_decoder(7 downto 4),
+		  INPUT_CODE => port_out_06_to_decoder(3 downto 0),
 		  Decimal_Point => '0',
 		  OUTPUT_DISPLAY => LED18
 		);
@@ -144,7 +144,7 @@ architecture top_arch of top is
 		Char17 : character_decoder_16
 		port map
 		(
-		  INPUT_CODE => port_out_06_to_decoder(3 downto 0),
+		  INPUT_CODE => port_out_06_to_decoder(7 downto 4),
 		  Decimal_Point=> '0',
 		  OUTPUT_DISPLAY => LED17
 		);
