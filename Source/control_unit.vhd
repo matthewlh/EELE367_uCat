@@ -63,16 +63,18 @@ architecture control_unit_arch of control_unit is
 	constant AND_AB   : std_logic_vector (7 downto 0) := x"44";   -- A <= A and B
 	constant OR_AB    : std_logic_vector (7 downto 0) := x"45";   -- A <= A or B
 	constant INCA     : std_logic_vector (7 downto 0) := x"46";   -- A <= A + 1
-	constant INCB     : std_logic_vector (7 downto 0) := x"47";   -- B <= B + 1
 	constant DECA     : std_logic_vector (7 downto 0) := x"48";   -- A <= A - 1
+	constant INCB     : std_logic_vector (7 downto 0) := x"47";   -- B <= B + 1
 	constant DECB     : std_logic_vector (7 downto 0) := x"49";   -- B <= B - 1
 	
 	constant ALU_Sel_ADD		: STD_LOGIC_VECTOR(2 downto 0) := "000";
 	constant ALU_Sel_SUB		: STD_LOGIC_VECTOR(2 downto 0) := "001";
 	constant ALU_Sel_AND		: STD_LOGIC_VECTOR(2 downto 0) := "010";
 	constant ALU_Sel_OR		: STD_LOGIC_VECTOR(2 downto 0) := "011";
-	constant ALU_Sel_INC		: STD_LOGIC_VECTOR(2 downto 0) := "100";
-	constant ALU_Sel_DEC		: STD_LOGIC_VECTOR(2 downto 0) := "101";
+	constant ALU_Sel_INCA	: STD_LOGIC_VECTOR(2 downto 0) := "100";
+	constant ALU_Sel_DECA	: STD_LOGIC_VECTOR(2 downto 0) := "101";
+	constant ALU_Sel_INCB	: STD_LOGIC_VECTOR(2 downto 0) := "110";
+	constant ALU_Sel_DECB	: STD_LOGIC_VECTOR(2 downto 0) := "111";
 	
 	constant CCR_OFFSET_N	: integer := 3;
 	constant CCR_OFFSET_Z	: integer := 2;
@@ -130,7 +132,31 @@ architecture control_unit_arch of control_unit is
 								
 								S_BEQ_0,			-- BEQ states
 								S_BEQ_1,
-								S_BEQ_2
+								S_BEQ_2,
+								
+								S_ADD_0,			-- ADD_AB states
+								S_ADD_1,
+								
+								S_SUB_0,			-- SUB_AB states
+								S_SUB_1,
+								
+								S_AND_0,			-- AND_AB states
+								S_AND_1,
+								
+								S_OR_0,			-- OR_AB states
+								S_OR_1,
+								
+								S_INCA_0,		-- INCA states
+								S_INCA_1,
+								
+								S_DECA_0,		-- DECA states
+								S_DECA_1,
+								
+								S_INCB_0,		-- INCB states
+								S_INCB_1,
+								
+								S_DECB_0,		-- DECB states
+								S_DECB_1
 							 );
 							 
 	--signal decalration
@@ -150,7 +176,7 @@ architecture control_unit_arch of control_unit is
 		end process;
 		
 		-- Next State Logic
-		NEXT_STATE_LOGIC : process(current_state, IR)
+		NEXT_STATE_LOGIC : process(current_state, IR, CCR_Result)
 			begin
 				-- opcode fetch states
 				if(current_state = S_FETCH_0) then 
@@ -180,6 +206,27 @@ architecture control_unit_arch of control_unit is
 						next_state <= S_BRA_0;
 					elsif(IR = BEQ) then 
 						next_state <= S_BEQ_0;
+						
+					elsif(IR = ADD_AB) then 
+						next_state <= S_ADD_0;
+					elsif(IR = SUB_AB) then 
+						next_state <= S_SUB_0;
+						
+					elsif(IR = AND_AB) then 
+						next_state <= S_AND_0;
+					elsif(IR = OR_AB) then 
+						next_state <= S_OR_0;
+						
+					elsif(IR = INCA) then 
+						next_state <= S_INCA_0;
+					elsif(IR = DECA) then 
+						next_state <= S_DECA_0;
+						
+					elsif(IR = INCB) then 
+						next_state <= S_INCB_0;
+					elsif(IR = DECB) then 
+						next_state <= S_DECB_0;
+						
 					else
 						next_state <= S_FETCH_0;
 					end if;
@@ -262,6 +309,54 @@ architecture control_unit_arch of control_unit is
 						next_state <= S_FETCH_0;
 					end if;
 				elsif(current_state = S_BEQ_2) then
+					next_state <= S_FETCH_0;
+					
+				-- ADD states
+				elsif(current_state = S_ADD_0) then
+					next_state <= S_ADD_1;
+				elsif(current_state = S_ADD_1) then
+					next_state <= S_FETCH_0;
+					
+				-- SUB states
+				elsif(current_state = S_SUB_0) then
+					next_state <= S_SUB_1;
+				elsif(current_state = S_SUB_1) then
+					next_state <= S_FETCH_0;
+					
+				-- AND_AB states
+				elsif(current_state = S_AND_0) then
+					next_state <= S_AND_1;
+				elsif(current_state = S_AND_1) then
+					next_state <= S_FETCH_0;
+					
+				-- OR_AB states
+				elsif(current_state = S_OR_0) then
+					next_state <= S_OR_1;
+				elsif(current_state = S_OR_1) then
+					next_state <= S_FETCH_0;
+					
+				-- INCA states
+				elsif(current_state = S_INCA_0) then
+					next_state <= S_INCA_1;
+				elsif(current_state = S_INCA_1) then
+					next_state <= S_FETCH_0;
+					
+				-- DECA states
+				elsif(current_state = S_DECA_0) then
+					next_state <= S_DECA_1;
+				elsif(current_state = S_DECA_1) then
+					next_state <= S_FETCH_0;
+					
+				-- INCB states
+				elsif(current_state = S_INCB_0) then
+					next_state <= S_INCB_1;
+				elsif(current_state = S_INCB_1) then
+					next_state <= S_FETCH_0;
+					
+				-- DECB states
+				elsif(current_state = S_DECB_0) then
+					next_state <= S_DECB_1;
+				elsif(current_state = S_DECB_1) then
 					next_state <= S_FETCH_0;
 					
 				-- if we get lost
@@ -702,7 +797,216 @@ architecture control_unit_arch of control_unit is
 						BUS1_Sel		<= BUS1_Sel_PC;
 						Bus2_Sel		<= Bus2_Sel_from_mem;
 						write			<= '0';
-					
+						
+					-- ADD_AB states
+					when S_ADD_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_ADD_1 =>				-- Latch results into CCR and A
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_ADD;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- SUB_AB states
+					when S_SUB_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_SUB;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_SUB_1 =>				-- Latch results into CCR and A
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_SUB;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- AND_AB states
+					when S_AND_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_AND;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_AND_1 =>				-- Latch results into CCR and A
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_AND;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- OR_AB states
+					when S_OR_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_OR;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_OR_1 =>				-- Latch results into CCR and A
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_OR;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- INCA states
+					when S_INCA_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_INCA;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_INCA_1 =>				-- Latch results into CCR and A
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_INCA;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- DECA states
+					when S_DECA_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_DECA;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_DECA_1 =>				-- Latch results into CCR and A
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '1';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_DECA;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- INCB states
+					when S_INCB_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_INCB;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_INCB_1 =>				-- Latch results into CCR and B
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '1';
+						ALU_Sel		<= ALU_Sel_INCB;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- DECB states
+					when S_DECB_0 =>				-- transfer A to ALU through BUS1, set ALU_Sel, prep BUS2 for result
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '0';
+						ALU_Sel		<= ALU_Sel_DECB;
+						CCR_Load		<= '0';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_ALU;
+						write			<= '0';
+					when S_DECB_1 =>				-- Latch results into CCR and B
+						IR_Load 		<= '0';
+						MAR_LOAD 	<= '0';
+						PC_Load		<= '0';
+						PC_Inc		<= '0';
+						A_Load		<= '0';
+						B_Load		<= '1';
+						ALU_Sel		<= ALU_Sel_DECB;
+						CCR_Load		<= '1';
+						BUS1_Sel		<= BUS1_Sel_A;
+						Bus2_Sel		<= Bus2_Sel_Bus1;
+						write			<= '0';
+						
+					-- just for safety
 					when others =>
 						IR_Load 		<= '0';
 						MAR_LOAD 	<= '0';

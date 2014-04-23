@@ -66,14 +66,17 @@ architecture alu_arch of alu is
 					result <= A_uns + B_uns;
 				elsif(ALU_Sel = ALU_Sel_SUB) then 
 					result <= A_uns - B_uns;
+					
 				elsif(ALU_Sel = ALU_Sel_AND) then 
 					result <= A_uns AND B_uns;
 				elsif(ALU_Sel = ALU_Sel_OR) then 
 					result <= A_uns OR B_uns;
+					
 				elsif(ALU_Sel = ALU_Sel_INCA) then 
 					result <= A_uns +1;
 				elsif(ALU_Sel = ALU_Sel_DECA) then 
 					result <= A_uns -1;
+					
 				elsif(ALU_Sel = ALU_Sel_INCB) then 
 					result <= B_uns +1;
 				elsif(ALU_Sel = ALU_Sel_DECB) then 
@@ -81,10 +84,13 @@ architecture alu_arch of alu is
 				end if;
 		end process;
 		
-		N <= '0';
-		Z <= '0';
-		V <= '0';
-		C <= '0';
+		N <= result(7);
+		Z <= '1' when(result(7 downto 0) = x"00") else '0';		
+		V <= '1' when (((ALU_Sel = ALU_Sel_ADD) AND (A(7) = '0') AND (B(7) = '0') and (result(7) = '1')) OR  	-- (+) + (+) = -
+                     ((ALU_Sel = ALU_Sel_ADD) AND (A(7) = '1') AND (B(7) = '1') and (result(7) = '0')) OR	-- (-) + (-) = +
+                     ((ALU_Sel = ALU_Sel_SUB) AND (A(7) = '1') AND (B(7) = '0') and (result(7) = '0'))) 		-- (-) - (+) = +
+				else '0';				
+		C <= result(8);
 					
 		data_out <= STD_LOGIC_VECTOR(result(7 downto 0));
 		
