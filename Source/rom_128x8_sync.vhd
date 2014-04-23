@@ -72,7 +72,7 @@ architecture rom_128x8_sync_arch of rom_128x8_sync is
 	
 		-- Init VAR_Counter to 0x00 --
 				0 => LDA_IMM,   		
-				1 => x"01",     
+				1 => x"00",     
 				2 => STA_DIR,   		
 				3 => ADDR_VAR_Counter,
 			
@@ -106,20 +106,25 @@ architecture rom_128x8_sync_arch of rom_128x8_sync is
 			  
 			  -- if result == 0x00, do something special
 			  22 => BEQ,
-			  23 => x"1A",
+			  23 => x"20",
 			  
-			  -- else brand back to main loop
-			  24 => BRA,
-			  25 => x"04",
+			  -- else 
+			  26 => LDA_IMM,			-- put 0x00 on port_out_02
+			  27 => x"00",
+			  28 => STA_DIR,
+			  29 => x"E2",
+			  
+			  30 => BRA,				-- brand back to main loop
+			  31 => x"04",
 			  
 		-- something special when result = 0x00
-			  26 => LDA_IMM,			-- put 0xFF on LED17-18
-			  27 => x"FF",
-			  28 => STA_DIR,
-			  29 => ADDR_LED_17_18,
+			  32 => LDA_IMM,			-- put 0x0F on port_out_02
+			  33 => x"0F",
+			  34 => STA_DIR,
+			  35 => x"E2",
 			  
-			  30 => BRA,				-- go back to main loop
-			  31 => x"04",
+			  36 => BRA,				-- go back to main loop
+			  37 => x"04",
 				
 			others => x"00"
 			); 

@@ -821,7 +821,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_ADD;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- SUB_AB states
@@ -847,7 +847,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_SUB;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- AND_AB states
@@ -873,7 +873,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_AND;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- OR_AB states
@@ -899,7 +899,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_OR;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- INCA states
@@ -925,7 +925,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_INCA;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- DECA states
@@ -951,7 +951,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_DECA;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- INCB states
@@ -977,7 +977,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_INCB;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- DECB states
@@ -1003,7 +1003,7 @@ architecture control_unit_arch of control_unit is
 						ALU_Sel		<= ALU_Sel_DECB;
 						CCR_Load		<= '1';
 						BUS1_Sel		<= BUS1_Sel_A;
-						Bus2_Sel		<= Bus2_Sel_Bus1;
+						Bus2_Sel		<= Bus2_Sel_ALU;
 						write			<= '0';
 						
 					-- just for safety

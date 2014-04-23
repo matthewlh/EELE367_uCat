@@ -40,6 +40,7 @@ architecture top_arch of top is
 	-- signal declaration	
 	signal	Clock_Divided 	: STD_LOGIC;
 	
+	signal port_out_02					: STD_LOGIC_VECTOR(7 downto 0);
 	signal port_out_06_to_decoder		: STD_LOGIC_VECTOR(7 downto 0);
 	signal port_out_07_to_decoder		: STD_LOGIC_VECTOR(7 downto 0);
 	
@@ -121,7 +122,7 @@ architecture top_arch of top is
 		port map
 		(
 		  INPUT_CODE => port_out_07_to_decoder(3 downto 0),
-		  Decimal_Point => '0',
+		  Decimal_Point => port_out_02(0),
 		  OUTPUT_DISPLAY => LED20
 		);
 		
@@ -129,7 +130,7 @@ architecture top_arch of top is
 		port map
 		(
 		  INPUT_CODE => port_out_07_to_decoder(7 downto 4),
-		  Decimal_Point => '0',
+		  Decimal_Point => port_out_02(1),
 		  OUTPUT_DISPLAY => LED19
 		);
 		
@@ -137,7 +138,7 @@ architecture top_arch of top is
 		port map
 		(
 		  INPUT_CODE => port_out_06_to_decoder(3 downto 0),
-		  Decimal_Point => '0',
+		  Decimal_Point => port_out_02(2),
 		  OUTPUT_DISPLAY => LED18
 		);
 		
@@ -145,7 +146,7 @@ architecture top_arch of top is
 		port map
 		(
 		  INPUT_CODE => port_out_06_to_decoder(7 downto 4),
-		  Decimal_Point=> '0',
+		  Decimal_Point=> port_out_02(3),
 		  OUTPUT_DISPLAY => LED17
 		);
 		
@@ -174,7 +175,7 @@ architecture top_arch of top is
 			
 			Port_out_00		=> LED_Blue,
 			Port_out_01		=> LED_Red,
-			Port_out_02		=> open,
+			Port_out_02		=> port_out_02,
 			Port_out_03		=> open,
 			Port_out_04		=> open,
 			Port_out_05		=> open,
