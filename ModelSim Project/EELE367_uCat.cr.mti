@@ -1,22 +1,5 @@
-C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/memory.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/memory.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity memory
--- Compiling architecture memory_arch of memory
-
-} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity ucat
--- Compiling architecture ucat_arch of ucat
-
-} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat_tb.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat_tb.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat_tb.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat_tb.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -24,7 +7,7 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling architecture ucat_TB_arch of ucat_TB
 
 } {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rw_96x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rw_96x8_sync.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -32,26 +15,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity rw_96x8_sync
 -- Compiling architecture rw_96x8_sync_arch of rw_96x8_sync
 
-} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/output_port_16x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/output_port_16x8_sync.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/cpu_register.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/cpu_register.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity output_port_16x8_sync
--- Compiling architecture output_port_16x8_sync_arch of output_port_16x8_sync
-
-} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rom_128x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rom_128x8_sync.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity rom_128x8_sync
--- Compiling architecture rom_128x8_sync_arch of rom_128x8_sync
+-- Compiling entity cpu_register
+-- Compiling architecture cpu_register_arch of cpu_register
 
 } {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/processing_unit.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/processing_unit.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -59,21 +33,83 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity processing_unit
 -- Compiling architecture processing_unit_arch of processing_unit
 
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/output_port_16x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/output_port_16x8_sync.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity output_port_16x8_sync
+-- Compiling architecture output_port_16x8_sync_arch of output_port_16x8_sync
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/control_unit.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/control_unit.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity control_unit
+-- Compiling architecture control_unit_arch of control_unit
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/memory.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/memory.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity memory
+-- Compiling architecture memory_arch of memory
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/alu.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/alu.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity alu
+-- Compiling architecture alu_arch of alu
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rom_128x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rom_128x8_sync.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity rom_128x8_sync
+-- Compiling architecture rom_128x8_sync_arch of rom_128x8_sync
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ucat
+-- Compiling architecture ucat_arch of ucat
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/clock_div.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/clock_div.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity clock_div
+-- Compiling architecture clock_div_arch of clock_div
+
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/input_port_16x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/input_port_16x8_sync.vhd
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity input_port_16x8_sync
+-- Compiling architecture input_port_16x8_sync_arch of input_port_16x8_sync
+
 } {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/cpu.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/cpu.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity cpu
 -- Compiling architecture cpu_arch of cpu
-
-} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/cpu_register.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/cpu_register.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity cpu_register
--- Compiling architecture cpu_register_arch of cpu_register
 
 } {} {}}
