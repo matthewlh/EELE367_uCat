@@ -31,10 +31,7 @@ entity top is
 		LED17			: out	STD_LOGIC_VECTOR(7 downto 0);	--Seven Segment LEDs + Decimal
 		LED18			: out	STD_LOGIC_VECTOR(7 downto 0);	--Seven Segment LEDs + Decimal
 		LED19			: out	STD_LOGIC_VECTOR(7 downto 0);	--Seven Segment LEDs + Decimal
-		LED20			: out	STD_LOGIC_VECTOR(7 downto 0); --Seven Segment LEDs + Decimal
-		
-		GPIO_0		: in	STD_LOGIC_VECTOR(31 downto 0);
-		GPIO_1		: out	STD_LOGIC_VECTOR(31 downto 0)
+		LED20			: out	STD_LOGIC_VECTOR(7 downto 0) 	--Seven Segment LEDs + Decimal
 	);
 end entity;
 
@@ -158,12 +155,12 @@ architecture top_arch of top is
 			clock				=> Clock_Divided,
 			reset				=> RST,
 		
-			Port_in_00		=>	SW1,
+			Port_in_00		=> SW1,
 			Port_in_01		=> SW2,
-			Port_in_02		=> GPIO_0(31 downto 24),
-			Port_in_03		=> GPIO_0(23 downto 16),
-			Port_in_04		=> GPIO_0(15 downto  8),
-			Port_in_05		=> GPIO_0( 7 downto  0),
+			Port_in_02		=> x"00",
+			Port_in_03		=> x"00",
+			Port_in_04		=> x"00",
+			Port_in_05		=> x"00",
 			Port_in_06		=> "0000000" & key1,
 			Port_in_07		=> x"00",
 			Port_in_08		=> x"00",
@@ -177,10 +174,10 @@ architecture top_arch of top is
 			
 			Port_out_00		=> LED_Blue,
 			Port_out_01		=> LED_Red,
-			Port_out_02		=> GPIO_1(31 downto 24),
-			Port_out_03		=> GPIO_1(23 downto 16),
-			Port_out_04		=> GPIO_1(15 downto  8),
-			Port_out_05		=> GPIO_1( 7 downto  0),
+			Port_out_02		=> open,
+			Port_out_03		=> open,
+			Port_out_04		=> open,
+			Port_out_05		=> open,
 			Port_out_06 	=> port_out_06_to_decoder,
 			Port_out_07 	=> port_out_07_to_decoder,
 			Port_out_08 	=> open,
