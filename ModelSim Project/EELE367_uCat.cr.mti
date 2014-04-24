@@ -69,6 +69,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity alu
 -- Compiling architecture alu_arch of alu
 
+} {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rom_128x8_sync.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/rom_128x8_sync.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity rom_128x8_sync
+-- Compiling architecture rom_128x8_sync_arch of rom_128x8_sync
+
 } {} {}} C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat.vhd {1 {vcom -work work -2002 -explicit C:/Users/Matthew/Documents/GitHub/EELE367_uCat/Source/ucat.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
